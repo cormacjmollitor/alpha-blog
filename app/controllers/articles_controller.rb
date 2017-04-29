@@ -1,5 +1,10 @@
 class ArticlesController < ApplicationController
   
+  
+  def index
+    @articles = Article.all
+  end
+  
   #Needed to make the page run
   #This creates a new instance of the class Article called article
   def new
@@ -25,6 +30,22 @@ class ArticlesController < ApplicationController
   
   def show 
     @article = Article.find(params[:id])
+  end
+  
+  def edit
+    @article = Article.find(params[:id])
+  end
+  
+  def update
+    @article = Article.find(params[:id])
+    if @article.update(article_params)
+      flash[:notice] = "Article was sucessfully updated"
+      redirect_to article_path(@article)
+    
+    #renders the edit template again if we failed
+    else
+      render 'edit'
+    end
   end
   
   private
