@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
     #redirect_to article_path(@article) 
     
     if @article.save
-      flash[:notice] = "Article was successfully created"
+      flash[:success] = "Article was successfully created"
       redirect_to article_path(@article)
     #else is taken if the validations for article failed
     else
@@ -37,7 +37,7 @@ class ArticlesController < ApplicationController
   
   def update
     if @article.update(article_params)
-      flash[:notice] = "Article was sucessfully updated"
+      flash[:success] = "Article was sucessfully updated"
       redirect_to article_path(@article)
     
     #renders the edit template again if we failed
@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
   
   def destroy
     @article.destroy
-    flash[:notice] = "article was successfully deleted"
+    flash[:danger] = "Article was successfully deleted"
     redirect_to articles_path
   end
   
